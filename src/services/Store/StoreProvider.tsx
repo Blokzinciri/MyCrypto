@@ -35,7 +35,7 @@ import {
   getWeb3Config,
   multiplyBNFloats,
   weiToFloat,
-  generateAccountUUID,
+  generateDeterministicAddressUUID,
   useAnalytics,
   isSameAddress,
   sortByLabel
@@ -445,7 +445,7 @@ export const StoreProvider: React.FC = ({ children }) => {
         transactions: [],
         favorite: false,
         mtime: 0,
-        uuid: generateAccountUUID(networkId, address)
+        uuid: generateDeterministicAddressUUID(networkId, address)
       }));
       if (newRawAccounts.length === 0) return;
       const newLabels = findMultipleNextUnusedDefaultLabels(
@@ -484,7 +484,7 @@ export const StoreProvider: React.FC = ({ children }) => {
       const walletType =
         accountType! === WalletId.WEB3 ? WalletId[getWeb3Config().id] : accountType!;
       const newAsset: Asset = getNewDefaultAssetTemplateByNetwork(assets)(network);
-      const accountUUID = generateAccountUUID(networkId, address);
+      const accountUUID = generateDeterministicAddressUUID(networkId, address);
       const account: IRawAccount = {
         address,
         networkId,

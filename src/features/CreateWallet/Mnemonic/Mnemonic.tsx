@@ -10,7 +10,7 @@ import { MnemonicStages, mnemonicStageToComponentHash, mnemonicFlow } from './co
 import { withAccountAndNotificationsContext } from '../components/withAccountAndNotificationsContext';
 import { NotificationTemplates } from '@features/NotificationsPanel';
 import { TAddress, IRawAccount, Asset, DPathFormat, ISettings, WalletId, NetworkId } from '@types';
-import { generateAccountUUID, withHook } from '@utils';
+import { generateDeterministicAddressUUID, withHook } from '@utils';
 import {
   IAssetContext,
   INetworkContext,
@@ -157,7 +157,7 @@ class CreateMnemonic extends Component<Props & IAssetContext & INetworkContext> 
       favorite: false,
       mtime: Date.now()
     };
-    const accountUUID = generateAccountUUID(network, account.address);
+    const accountUUID = generateDeterministicAddressUUID(network, account.address);
     createAccountWithID(account, accountUUID);
     updateSettingsAccounts([...settings.dashboardAccounts, accountUUID]);
     createAssetWithID(newAsset, newAsset.uuid);

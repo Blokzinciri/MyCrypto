@@ -6,7 +6,7 @@ import chain from 'ramda/src/chain';
 import reduce from 'ramda/src/reduce';
 import mergeRight from 'ramda/src/mergeRight';
 
-import { generateAssetUUID, generateContractUUID } from '@utils';
+import { generateAssetUUID, generateDeterministicAddressUUID } from '@utils';
 import { Fiats, DEFAULT_ASSET_DECIMAL } from '@config';
 import {
   Asset,
@@ -75,7 +75,7 @@ const addNetworks = add(LSKeys.NETWORKS)((networks: SeedData) => {
 const addContracts = add(LSKeys.CONTRACTS)(
   (networks: Record<NetworkId, NetworkLegacy>, store: LocalStorage) => {
     const formatContract = (id: NetworkId) => (c: ContractLegacy): ExtendedContract => ({
-      uuid: c.uuid || generateContractUUID(id, c.address),
+      uuid: c.uuid || generateDeterministicAddressUUID(id, c.address),
       name: c.name,
       address: c.address,
       abi: c.abi,

@@ -4,7 +4,7 @@ import { addHexPrefix, toChecksumAddress } from 'ethereumjs-util';
 import { IV3Wallet } from 'ethereumjs-wallet';
 import pipe from 'ramda/src/pipe';
 
-import { makeBlob, generateAccountUUID, withHook } from '@utils';
+import { makeBlob, generateDeterministicAddressUUID, withHook } from '@utils';
 import { generateKeystore, fromV3 } from '@workers';
 import {
   INetworkContext,
@@ -126,7 +126,7 @@ class CreateKeystore extends Component<Props & INetworkContext & IAssetContext, 
       favorite: false,
       mtime: 0
     };
-    const accountUUID = generateAccountUUID(network, account.address);
+    const accountUUID = generateDeterministicAddressUUID(network, account.address);
     createAccountWithID(account, accountUUID);
     updateSettingsAccounts([...settings.dashboardAccounts, accountUUID]);
     createAssetWithID(newAsset, newAsset.uuid);
