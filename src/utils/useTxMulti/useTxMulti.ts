@@ -1,12 +1,16 @@
+import { useContext, useEffect } from 'react';
 import { useReducer } from 'reinspect';
 import identity from 'ramda/src/identity';
 import view from 'ramda/src/view';
 import lensIndex from 'ramda/src/lensIndex';
 
+import { ITxObject, ITxStatus, ITxType } from '@types';
+import { StoreContext, AccountContext, useAssets, useNetworks } from '@services';
+import { makeTxConfigFromTxResponse, makePendingTxReceipt } from '@utils';
+
 import { TxMultiReducer, initialState } from './reducer';
 import { init, initWith, stopYield, prepareTx, sendTx, reset } from './actions';
 import { TxParcel, TxMultiState } from './types';
-import { ITxObject } from '@types';
 
 /*
   Create a queue of transactions the need to be sent in order.
@@ -30,6 +34,34 @@ export type TUseTxMulti = () => {
 export const useTxMulti: TUseTxMulti = () => {
   const [state, dispatch] = useReducer(TxMultiReducer, initialState, identity, 'TxMulti');
   const getState = () => state;
+  const { accounts } = useContext(StoreContext);
+  const { addNewTxToAccount } = useContext(AccountContext);
+  const { assets } = useAssets();
+  const { getNetworkByChainId } = useNetworks();
+  const { account } = state;
+
+  const currentTx: TxParcel = view(lensIndex(state._currentTxIdx), state.transactions);
+
+  useEffect(() => {
+    if (
+      currentTx &&
+      currentTx.txResponse &&
+      currentTx.txHash &&
+      currentTx.status === ITxStatus.BROADCASTED
+    ) {
+      if (account && currentTx && currentTx.txResponse) {
+        const network = getNetworkByChainId(currentTx.txRaw.chainId)!;
+        const txConfig = makeTxConfigFromTxResponse(
+          currentTx.txResponse,
+          assets,
+          network,
+          accounts
+        );
+        const pendingTxReceipt = makePendingTxReceipt(currentTx.txHash)(ITxType.UNKNOWN, txConfig);
+        addNewTxToAccount(account, pendingTxReceipt);
+      }
+    }
+  }, [currentTx]);
 
   return {
     state,
@@ -39,8 +71,6 @@ export const useTxMulti: TUseTxMulti = () => {
     prepareTx: prepareTx(dispatch, getState),
     sendTx: sendTx(dispatch, getState),
     reset: reset(dispatch),
-    get currentTx(): TxParcel {
-      return view(lensIndex(state._currentTxIdx), state.transactions);
-    }
+    currentTx
   };
 };
