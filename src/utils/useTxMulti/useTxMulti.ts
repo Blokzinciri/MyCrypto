@@ -44,22 +44,16 @@ export const useTxMulti: TUseTxMulti = () => {
 
   useEffect(() => {
     if (
+      account &&
       currentTx &&
       currentTx.txResponse &&
       currentTx.txHash &&
       currentTx.status === ITxStatus.BROADCASTED
     ) {
-      if (account && currentTx && currentTx.txResponse) {
-        const network = getNetworkByChainId(currentTx.txRaw.chainId)!;
-        const txConfig = makeTxConfigFromTxResponse(
-          currentTx.txResponse,
-          assets,
-          network,
-          accounts
-        );
-        const pendingTxReceipt = makePendingTxReceipt(currentTx.txHash)(ITxType.UNKNOWN, txConfig);
-        addNewTxToAccount(account, pendingTxReceipt);
-      }
+      const network = getNetworkByChainId(currentTx.txRaw.chainId)!;
+      const txConfig = makeTxConfigFromTxResponse(currentTx.txResponse, assets, network, accounts);
+      const pendingTxReceipt = makePendingTxReceipt(currentTx.txHash)(ITxType.UNKNOWN, txConfig);
+      addNewTxToAccount(account, pendingTxReceipt);
     }
   }, [currentTx]);
 
