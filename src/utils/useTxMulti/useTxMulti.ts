@@ -1,8 +1,5 @@
 import { useContext, useEffect } from 'react';
 import { useReducer } from 'reinspect';
-import identity from 'ramda/src/identity';
-import view from 'ramda/src/view';
-import lensIndex from 'ramda/src/lensIndex';
 
 import { ITxObject, ITxStatus, ITxType } from '@types';
 import { StoreContext, AccountContext, useAssets, useNetworks } from '@services';
@@ -11,6 +8,7 @@ import { makeTxConfigFromTxResponse, makePendingTxReceipt } from '@utils';
 import { TxMultiReducer, initialState } from './reducer';
 import { init, initWith, stopYield, prepareTx, sendTx, reset } from './actions';
 import { TxParcel, TxMultiState } from './types';
+import { identity, lensIndex, view } from '@vendor';
 
 /*
   Create a queue of transactions the need to be sent in order.
