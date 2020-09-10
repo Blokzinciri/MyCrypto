@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { useReducer } from 'reinspect';
 
 import { ITxObject, ITxStatus, ITxType } from '@types';
-import { StoreContext, AccountContext, useAssets, useNetworks } from '@services';
+import { StoreContext, AccountContext, useAssets } from '@services';
 import { makeTxConfigFromTxResponse, makePendingTxReceipt } from '@utils';
 
 import { TxMultiReducer, initialState } from './reducer';
@@ -35,20 +35,19 @@ export const useTxMulti: TUseTxMulti = () => {
   const { accounts } = useContext(StoreContext);
   const { addNewTxToAccount } = useContext(AccountContext);
   const { assets } = useAssets();
-  const { getNetworkByChainId } = useNetworks();
-  const { account } = state;
+  const { account, network } = state;
 
   const currentTx: TxParcel = view(lensIndex(state._currentTxIdx), state.transactions);
 
   useEffect(() => {
     if (
       account &&
+      network &&
       currentTx &&
       currentTx.txResponse &&
       currentTx.txHash &&
       currentTx.status === ITxStatus.BROADCASTED
     ) {
-      const network = getNetworkByChainId(currentTx.txRaw.chainId)!;
       const txConfig = makeTxConfigFromTxResponse(currentTx.txResponse, assets, network, accounts);
       const pendingTxReceipt = makePendingTxReceipt(currentTx.txHash)(ITxType.UNKNOWN, txConfig);
       addNewTxToAccount(account, pendingTxReceipt);
