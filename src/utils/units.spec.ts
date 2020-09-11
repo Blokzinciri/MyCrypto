@@ -7,7 +7,7 @@ import {
   getDecimalFromEtherUnit,
   TokenValue,
   convertTokenBase
-} from '@utils';
+} from './units';
 
 const Units = {
   wei: '1',

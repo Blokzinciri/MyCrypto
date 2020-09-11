@@ -4,7 +4,7 @@ import {
   evp_kdf,
   decipherBuffer,
   decryptMnemonicToPrivKey
-} from '@utils';
+} from './decrypt';
 
 // Elements of a V1 encrypted priv key
 const v1 = {
