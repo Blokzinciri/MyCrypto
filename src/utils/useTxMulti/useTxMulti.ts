@@ -33,9 +33,11 @@ export const useTxMulti: TUseTxMulti = () => {
   const [state, dispatch] = useReducer(TxMultiReducer, initialState, identity, 'TxMulti');
   const getState = () => state;
   const { accounts } = useContext(StoreContext);
-  const { addNewTxToAccount } = useContext(AccountContext);
+  const { addNewTxToAccount, getAccountByAddressAndNetworkName } = useContext(AccountContext);
   const { assets } = useAssets();
-  const { account, network } = state;
+  const { network, account: stateAccount } = state;
+  const account =
+    stateAccount && getAccountByAddressAndNetworkName(stateAccount.address, stateAccount.networkId);
 
   const currentTx: TxParcel = view(lensIndex(state._currentTxIdx), state.transactions);
 
