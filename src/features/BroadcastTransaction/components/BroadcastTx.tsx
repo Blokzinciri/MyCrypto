@@ -7,7 +7,7 @@ import { toBuffer } from 'ethereumjs-util';
 
 import translate, { translateRaw } from '@translations';
 import { InputField, CodeBlock, NetworkSelectDropdown, InlineMessage } from '@components';
-import { getTransactionFields } from '@services/EthService';
+import { getTransactionFields } from '@utils';
 import { NetworkId, ISignedTx } from '@types';
 
 const ContentWrapper = styled.div`

@@ -16,16 +16,15 @@ import {
   getStoreAccount,
   getNetworkById
 } from '@services/Store';
+import { decodeTransfer } from '@services/EthService';
 import {
   fromTokenBase,
   bigNumGasLimitToViewable,
   bigNumGasPriceToViewableGwei,
   bigNumValueToViewableEther,
-  decodeTransfer,
-  toWei,
-  getDecimalFromEtherUnit,
-  gasPriceToBase
-} from '@services/EthService';
+  gasPriceToBase,
+  toWei
+} from '@utils';
 import {
   ExtendedAsset,
   Network,
@@ -52,6 +51,7 @@ import {
 import { CREATION_ADDRESS } from '@config';
 
 import { isTransactionDataEmpty } from './validators';
+import { getDecimalFromEtherUnit } from './units';
 
 export const toTxReceipt = (txHash: ITxHash, status: ITxHistoryStatus) => (
   txType: ITxType,

@@ -9,6 +9,7 @@ import {
   ITxData,
   ITxValue
 } from '@types';
+
 import { hexEncodeData, hexEncodeQuantity } from './hexEncode';
 
 export const getTransactionFields = (t: Tx): IHexStrTransaction => {

@@ -47,17 +47,10 @@ import {
   TAddress
 } from '@types';
 import {
-  baseToConvertedUnit,
-  bigNumGasPriceToViewableGwei,
-  convertedToBaseUnit,
-  fromTokenBase,
-  gasStringsToMaxGasBN,
   getNonce,
-  hexToNumber,
   isBurnAddress,
   isValidETHAddress,
-  isValidPositiveNumber,
-  toTokenBase
+  isValidPositiveNumber
 } from '@services/EthService';
 import { useRates } from '@services';
 import { fetchGasPriceEstimates, getGasEstimate } from '@services/ApiService';
@@ -76,7 +69,14 @@ import {
   isSameAddress,
   isVoid,
   bigify,
-  sortByLabel
+  sortByLabel,
+  baseToConvertedUnit,
+  bigNumGasPriceToViewableGwei,
+  convertedToBaseUnit,
+  fromTokenBase,
+  gasStringsToMaxGasBN,
+  toTokenBase,
+  hexToNumber
 } from '@utils';
 import { checkFormForProtectTxErrors } from '@features/ProtectTransaction';
 import { ProtectTxShowError } from '@features/ProtectTransaction/components/ProtectTxShowError';

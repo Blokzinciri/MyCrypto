@@ -4,8 +4,7 @@ import BN from 'bn.js';
 
 import { StoreContext, SettingsContext, useContacts } from '@services/Store';
 import { Amount, AssetIcon, Button, PoweredByText } from '@components';
-import { fromWei, Wei, totalTxFeeToString, totalTxFeeToWei } from '@services/EthService';
-import { convertToFiat } from '@utils';
+import { fromWei, Wei, totalTxFeeToString, totalTxFeeToWei, convertToFiat } from '@utils';
 import translate, { translateRaw } from '@translations';
 import { ZapSelectedBanner } from '@features/DeFiZap';
 import { BREAK_POINTS, SPACING, COLORS, FONT_SIZE } from '@theme';

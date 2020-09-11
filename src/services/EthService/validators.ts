@@ -16,13 +16,12 @@ import {
 } from '@config';
 import { JsonRPCResponse, InlineMessageType, Web3RequestPermissionsResponse } from '@types';
 import { translateRaw } from '@translations';
-
 import {
   stripHexPrefix,
   gasStringsToMaxGasBN,
   convertedToBaseUnit,
   baseToConvertedUnit
-} from './utils';
+} from '@utils';
 
 import { isValidENSName } from './ens/validators';
 

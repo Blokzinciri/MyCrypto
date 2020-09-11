@@ -7,7 +7,7 @@ import LedgerEth from '@ledgerhq/hw-app-eth';
 import TransportWebUSB from '@ledgerhq/hw-transport-webusb';
 
 import { translateRaw } from '@translations';
-import { getTransactionFields } from '@services/EthService';
+import { getTransactionFields } from '@utils';
 
 import { HardwareWallet, ChainCodeResponse } from './hardware';
 

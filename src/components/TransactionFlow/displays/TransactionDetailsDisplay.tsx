@@ -4,14 +4,17 @@ import { bigNumberify, BigNumber } from 'ethers/utils';
 import styled from 'styled-components';
 
 import { Asset, ITxObject, Fiat } from '@types';
+
+import { CopyableCodeBlock } from '@components';
+import { DEFAULT_ASSET_DECIMAL } from '@config';
 import {
+  weiToFloat,
+  isTransactionDataEmpty,
+  convertToFiat,
   baseToConvertedUnit,
   totalTxFeeToString,
   calculateGasUsedPercentage
-} from '@services/EthService';
-import { CopyableCodeBlock } from '@components';
-import { DEFAULT_ASSET_DECIMAL } from '@config';
-import { weiToFloat, isTransactionDataEmpty, convertToFiat } from '@utils';
+} from '@utils';
 import translate, { translateRaw } from '@translations';
 import { COLORS } from '@theme';
 

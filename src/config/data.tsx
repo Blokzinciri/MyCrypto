@@ -1,7 +1,7 @@
 import React from 'react'; // For ANNOUNCEMENT_MESSAGE jsx
 
 import { TURL } from '@types';
-import { makeExplorer } from '@services/EthService/utils/makeExplorer';
+import { makeExplorer } from '@utils';
 import packageJson from '../../package.json';
 import translate from '@translations';
 

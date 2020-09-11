@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 import { IAccount as IIAccount, ITxObject, ISignedTx, IPendingTxReceipt } from '@types';
 import { WALLETS_CONFIG } from '@config';
-import { makeTransaction } from '@services/EthService';
 import { WalletFactory, HardwareWallet } from '@services/WalletService';
 import { InlineMessage } from '@components';
 import translate, { translateRaw } from '@translations';
-import { useInterval } from '@utils';
+import { useInterval, makeTransaction } from '@utils';
 
 import './Hardware.scss';
 

@@ -2,7 +2,7 @@ import { default as Wallet } from 'ethereumjs-wallet';
 import { fromEtherWallet } from 'ethereumjs-wallet/thirdparty';
 
 import { fromV3 } from '@workers';
-import { decryptPrivKey } from '@services/EthService/utils';
+import { decryptPrivKey } from '@utils';
 import { signWrapper } from '../helpers';
 import { determineKeystoreType, KeystoreTypes } from './helpers';
 import Web3Wallet from './web3';

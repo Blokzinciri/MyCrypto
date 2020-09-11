@@ -1,7 +1,8 @@
 import { default as Wallet } from 'ethereumjs-wallet';
 
+import { decryptMnemonicToPrivKey } from '@utils';
+
 import { signWrapper } from '../helpers';
-import { decryptMnemonicToPrivKey } from '@services/EthService';
 
 export const MnemonicWallet = (
   phrase: string,

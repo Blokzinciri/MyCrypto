@@ -2,7 +2,7 @@ import { Brand, Overwrite } from 'utility-types';
 import BN from 'bn.js';
 import { BigNumber } from 'ethers/utils';
 
-import { Wei, Address } from '@services/EthService';
+import { Wei, Address } from '@utils';
 
 import { Asset } from './asset';
 import {

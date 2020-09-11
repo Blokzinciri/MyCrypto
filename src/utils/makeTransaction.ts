@@ -13,8 +13,8 @@ import {
   ITxValue,
   ITxNonce
 } from '@types';
-import { bigify } from '@utils';
 
+import { bigify } from './bigify';
 import { gasPriceToBase, toTokenBase, fromWei, toWei, Wei } from './units';
 import { hexEncodeQuantity } from './hexEncode';
 

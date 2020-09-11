@@ -4,7 +4,7 @@ import { Wallet } from 'ethers';
 
 import { TogglablePassword, Input, Button } from '@components';
 import { isValidPrivKey, isValidEncryptedPrivKey } from '@services/EthService';
-import { decryptPrivKey } from '@services/EthService/utils';
+import { decryptPrivKey } from '@utils';
 import { ISignComponentProps } from '@types';
 import translate, { translateRaw } from '@translations';
 import { WALLETS_CONFIG } from '@config';

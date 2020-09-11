@@ -1,5 +1,5 @@
-import { Wei, TokenValue } from '@services/EthService';
 import { IHexStrTransaction } from '@types';
+import { Wei, TokenValue } from '@utils';
 import { Token } from 'types/network';
 import { TransactionData, TransactionReceipt } from 'types/transactions';
 

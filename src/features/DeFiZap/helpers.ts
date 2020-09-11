@@ -1,5 +1,5 @@
 import { IHexStrTransaction, ITxObject, ITxToAddress, ISimpleTxForm, ITxData } from '@types';
-import { inputValueToHex, inputGasPriceToHex, inputNonceToHex } from '@services/EthService';
+import { inputValueToHex, inputGasPriceToHex, inputNonceToHex } from '@utils';
 import { DEFAULT_NETWORK_CHAINID } from '@config';
 import { COLORS } from '@theme';
 

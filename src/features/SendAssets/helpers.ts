@@ -27,23 +27,22 @@ import {
   inputValueToHex,
   inputNonceToHex,
   inputGasLimitToHex,
-  encodeTransfer,
-  fromTokenBase
-} from '@services/EthService';
-import {
+  handleValues,
+  fromTokenBase,
   isSameAddress,
   generateAssetUUID,
   guessIfErc20Tx,
-  deriveTxRecipientsAndAmount
+  deriveTxRecipientsAndAmount,
+  hexNonceToViewable,
+  hexToString
 } from '@utils';
-import { handleValues } from '@services/EthService/utils/units';
 import { MANDATORY_TRANSACTION_QUERY_PARAMS } from '@config';
-import { hexNonceToViewable, hexToString } from '@services/EthService/utils/makeTransaction';
 import { translateRaw } from '@translations';
 import { isEmpty } from '@vendor';
 
 import { IFullTxParam } from './types';
 import { TxParam, TTxQueryParam } from './preFillTx';
+import { encodeTransfer } from '@services/EthService';
 
 const createBaseTxObject = (formData: IFormikFields): IHexStrTransaction | ITxObject => {
   const { network } = formData;

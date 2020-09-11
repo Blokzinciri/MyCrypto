@@ -2,7 +2,7 @@
 // import { TAB } from 'components/Header/components/constants';
 
 import { WalletId, NetworkId, TTicker, NetworkLegacy } from '@types';
-import { makeExplorer } from '@services/EthService/utils/makeExplorer';
+import { makeExplorer } from '@utils';
 import {
   DPathsList as DPaths,
   ethPlorer,

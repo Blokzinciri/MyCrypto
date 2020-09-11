@@ -1,9 +1,11 @@
 import BigNumberJs from 'bignumber.js';
 import { bigNumberify, BigNumber, parseEther, formatEther } from 'ethers/utils';
-import { fromTokenBase } from '@services/EthService';
+import BN from 'bn.js';
+
 import { DEFAULT_ASSET_DECIMAL } from '@config';
 import { StoreAsset } from '@types';
-import BN from 'bn.js';
+
+import { fromTokenBase } from './units';
 
 export const convertToFiatFromAsset = (asset: StoreAsset, rate: number = 1): number => {
   const splitRate = rate.toString().split('.');

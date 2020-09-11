@@ -3,18 +3,19 @@ import moment from 'moment';
 import isNumber from 'lodash/isNumber';
 
 import {
-  fromWei,
-  totalTxFeeToWei,
-  Wei,
-  gasStringsToMaxGasNumber
-} from '@services/EthService/utils';
-import {
   GetTokenTxResponse,
   GetTxResponse,
   GetBalanceResponse
 } from '@services/ApiService/Etherscan/types';
 import { IFormikFields, TAddress } from '@types';
-import { bigify, isSameAddress } from '@utils';
+import {
+  bigify,
+  isSameAddress,
+  fromWei,
+  totalTxFeeToWei,
+  Wei,
+  gasStringsToMaxGasNumber
+} from '@utils';
 import {
   PROTECTED_TX_FEE_PERCENTAGE,
   PROTECTED_TX_FIXED_FEE_AMOUNT,

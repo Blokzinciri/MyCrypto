@@ -4,7 +4,8 @@ import translate, { translateRaw } from '@translations';
 import { TogglablePassword, Input } from '@components';
 
 import { WalletId } from '@types';
-import { isValidEncryptedPrivKey, isValidPrivKey, stripHexPrefix } from '@services/EthService';
+import { isValidEncryptedPrivKey, isValidPrivKey } from '@services/EthService';
+import { stripHexPrefix } from '@utils';
 import { WalletFactory } from '@services/WalletService';
 import PrivateKeyicon from '@assets/images/icn-privatekey-new.svg';
 import './PrivateKey.scss';

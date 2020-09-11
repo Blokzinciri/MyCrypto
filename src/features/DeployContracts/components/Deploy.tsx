@@ -15,13 +15,8 @@ import {
 } from '@components';
 import { NetworkId, StoreAccount, ITxConfig } from '@types';
 import { translateRaw } from '@translations';
-import {
-  StoreContext,
-  inputGasPriceToHex,
-  hexWeiToString,
-  hexToString,
-  baseToConvertedUnit
-} from '@services';
+import { StoreContext } from '@services';
+import { inputGasPriceToHex, hexWeiToString, hexToString, baseToConvertedUnit } from '@utils';
 import { COLORS } from '@theme';
 
 import { getAccountsInNetwork, constructGasCallProps } from '../helpers';

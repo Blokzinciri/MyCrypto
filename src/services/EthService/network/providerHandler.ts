@@ -8,8 +8,9 @@ import {
 import { formatEther, BigNumber } from 'ethers/utils';
 import any from '@ungap/promise-any';
 
+import { baseToConvertedUnit } from '@utils';
 import { Asset, Network, IHexStrTransaction, TxObj, ITxSigned } from '@types';
-import { RPCRequests, baseToConvertedUnit, ERC20 } from '@services/EthService';
+import { RPCRequests, ERC20 } from '@services/EthService';
 import { DEFAULT_ASSET_DECIMAL } from '@config';
 import { EthersJS } from './ethersJsProvider';
 import { createCustomNodeProvider } from './helpers';

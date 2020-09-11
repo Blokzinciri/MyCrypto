@@ -3,8 +3,7 @@ import mapValues from 'lodash/mapValues';
 
 import { translateRaw } from '@translations';
 import TrezorConnect from 'trezor-connect';
-import { getTransactionFields } from '@services/EthService';
-import { stripHexPrefixAndLower, padLeftEven } from '@services/EthService/utils';
+import { stripHexPrefixAndLower, padLeftEven, getTransactionFields } from '@utils';
 import { HardwareWallet, ChainCodeResponse } from './hardware';
 
 // read more: https://github.com/trezor/connect/blob/develop/docs/index.md#trezor-connect-manifest

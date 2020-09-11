@@ -1,13 +1,7 @@
 import { ethers } from 'ethers';
 
 import { ITxObject, StoreAccount, ITxConfig, ITxToAddress, ITxData } from '@types';
-import {
-  inputValueToHex,
-  inputGasPriceToHex,
-  toWei,
-  hexToString,
-  hexWeiToString
-} from '@services/EthService';
+import { inputValueToHex, inputGasPriceToHex, toWei, hexToString, hexWeiToString } from '@utils';
 import { DEFAULT_NETWORK_CHAINID, DEFAULT_ASSET_DECIMAL } from '@config';
 import { UnlockToken, ERC20 } from '@services/EthService/contracts';
 import { getAssetByUUID } from '@services';

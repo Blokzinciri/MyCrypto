@@ -4,10 +4,6 @@ import { Copyable, Heading, Input, Tooltip } from '@mycrypto/ui';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import styled from 'styled-components';
 
-import {
-  buildEIP681EtherRequest,
-  buildEIP681TokenRequest
-} from '@services/EthService/utils/formatters';
 import { ContentPanel, QRCode, AccountSelector, AssetSelector } from '@components';
 import { getNetworkById, StoreContext, useAssets } from '@services/Store';
 import {
@@ -16,7 +12,9 @@ import {
   noOp,
   filterDropdownAssets,
   filterValidAssets,
-  sortByTicker
+  sortByTicker,
+  buildEIP681EtherRequest,
+  buildEIP681TokenRequest
 } from '@utils';
 import { IAccount as IIAccount } from '@types';
 import { ROUTE_PATHS } from '@config';

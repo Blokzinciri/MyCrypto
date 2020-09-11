@@ -1,8 +1,10 @@
 import BN from 'bn.js';
 import { toBuffer, addHexPrefix } from 'ethereumjs-util';
-import { stripHexPrefix } from '@services/EthService';
+
 import { DEFAULT_ASSET_DECIMAL } from '@config';
-import { bigify } from '@utils';
+
+import { stripHexPrefix } from './stripHexPrefix';
+import { bigify } from './bigify';
 
 type UnitKey = keyof typeof Units;
 type Wei = BN;

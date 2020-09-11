@@ -13,8 +13,8 @@ import {
   TAction,
   TxQueryTypes
 } from '@types';
-import { getBaseAssetByNetwork, hexWeiToString } from '@services';
-import { makePendingTxReceipt, makeTxConfigFromSignedTx } from '@utils';
+import { getBaseAssetByNetwork } from '@services';
+import { makePendingTxReceipt, makeTxConfigFromSignedTx, hexWeiToString } from '@utils';
 
 import { processFormDataToTx } from './helpers';
 

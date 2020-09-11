@@ -1,6 +1,6 @@
 import { default as Wallet } from 'ethereumjs-wallet';
 
-import { stripHexPrefix } from '@services';
+import { stripHexPrefix } from '@utils';
 
 const { exec } = require('child_process');
 

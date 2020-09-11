@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Asset } from '@types';
-import { gasStringsToMaxGasNumber } from '@services/EthService';
+import { gasStringsToMaxGasNumber } from '@utils';
 
 interface Props {
   baseAsset: Asset;

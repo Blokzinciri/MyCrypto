@@ -15,9 +15,8 @@ import {
   ITxData
 } from '@types';
 import { getAssetByUUID, getAssetByTicker, DexService } from '@services';
-import { hexToString, appendGasPrice, appendSender } from '@services/EthService';
 import { WALLET_STEPS } from '@components';
-import { weiToFloat } from '@utils';
+import { weiToFloat, hexToString, appendGasPrice, appendSender } from '@utils';
 
 import { IAssetPair, LAST_CHANGED_AMOUNT } from './types';
 

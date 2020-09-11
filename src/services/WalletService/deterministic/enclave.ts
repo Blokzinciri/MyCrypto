@@ -2,7 +2,7 @@ import { Transaction as EthTx } from 'ethereumjs-tx';
 
 import EnclaveAPI, { WalletTypes } from 'shared/enclave/client';
 import { translateRaw } from '@translations';
-import { getTransactionFields } from '@services/EthService';
+import { getTransactionFields } from '@utils';
 import { IFullWallet } from '../IWallet';
 import { HardwareWallet, ChainCodeResponse } from './hardware';
 

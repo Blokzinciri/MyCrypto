@@ -1,4 +1,4 @@
-import { Wei } from '@services';
+import { Wei } from '@utils';
 import { toFixedIfLarger, formatNumber, formatGasLimit, formatMnemonic } from '@utils/formatters';
 
 describe('toFixedIfLarger', () => {

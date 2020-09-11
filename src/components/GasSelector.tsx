@@ -5,14 +5,8 @@ import { addHexPrefix } from 'ethereumjs-util';
 
 import { InputField, Typography, Checkbox } from '@components';
 import { translateRaw } from '@translations';
-import {
-  fetchGasPriceEstimates,
-  inputGasPriceToHex,
-  hexWeiToString,
-  getNonce,
-  getGasEstimate,
-  hexToNumber
-} from '@services';
+import { fetchGasPriceEstimates, getGasEstimate, getNonce } from '@services';
+import { inputGasPriceToHex, hexWeiToString, hexToNumber } from '@utils';
 import { StoreAccount } from '@types';
 import { COLORS, monospace } from '@theme';
 

@@ -16,12 +16,8 @@ import {
   InlineMessage
 } from '@components';
 import { Network, TTicker } from '@types';
-import {
-  getBaseAssetByNetwork,
-  getLabelByAddressAndNetwork,
-  isValidPath,
-  fromWei
-} from '@services';
+import { getBaseAssetByNetwork, getLabelByAddressAndNetwork, isValidPath } from '@services';
+import { fromWei } from '@utils';
 import { useAssets, useContacts } from '@services/Store';
 import { HELP_ARTICLE, DEFAULT_NETWORK_TICKER } from '@config';
 import { DeterministicWalletData, getDeterministicWallets } from '@services/WalletService';

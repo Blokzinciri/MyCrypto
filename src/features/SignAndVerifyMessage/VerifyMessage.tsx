@@ -5,7 +5,7 @@ import { parse } from 'query-string';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { InputField } from '@components';
-import { verifySignedMessage } from '@services/EthService';
+import { verifySignedMessage } from '@utils';
 import { BREAK_POINTS, COLORS } from '@theme';
 import translate, { translateRaw } from '@translations';
 import { ISignedMessage } from '@types';

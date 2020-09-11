@@ -1,7 +1,11 @@
 import { useContext } from 'react';
 
-import { TUseStateReducerFactory, makePendingTxReceipt } from '@utils';
-import { isWeb3Wallet } from '@utils/web3';
+import {
+  TUseStateReducerFactory,
+  makePendingTxReceipt,
+  hexWeiToString,
+  isWeb3Wallet
+} from '@utils';
 import {
   Asset,
   ITxStatus,
@@ -11,7 +15,7 @@ import {
   ISimpleTxFormFull,
   TStepAction
 } from '@types';
-import { hexWeiToString, ProviderHandler } from '@services/EthService';
+import { ProviderHandler } from '@services/EthService';
 import { AccountContext } from '@services/Store';
 
 import { createSimpleTxObject } from './helpers';

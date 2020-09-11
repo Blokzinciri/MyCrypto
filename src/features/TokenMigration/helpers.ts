@@ -2,13 +2,13 @@ import { ITxObject, StoreAccount, ITxConfig, TAddress, ITxData } from '@types';
 import {
   inputValueToHex,
   inputGasPriceToHex,
-  toWei,
   hexToString,
   hexWeiToString,
-  fromTokenBase
-} from '@services/EthService';
+  fromTokenBase,
+  toWei
+} from '@utils';
 import { DEFAULT_NETWORK_CHAINID, DEFAULT_ASSET_DECIMAL } from '@config';
-import { ERC20, decodeTransfer, RepV2Token } from '@services/EthService/contracts';
+import { ERC20, decodeTransfer, RepV2Token } from '@services/EthService';
 import { getAssetByUUID } from '@services';
 
 import { ITokenMigrationFormFull } from './types';

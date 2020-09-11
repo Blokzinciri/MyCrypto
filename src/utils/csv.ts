@@ -1,6 +1,8 @@
 import BN from 'bn.js';
 import { unparse } from 'papaparse';
-import { DWAccountDisplay, fromTokenBase } from '@services';
+
+import { DWAccountDisplay } from '@services';
+import { fromTokenBase } from '@utils';
 import { Asset } from '@types';
 
 export const accountsToCSV = (accounts: DWAccountDisplay[], asset: Asset) => {

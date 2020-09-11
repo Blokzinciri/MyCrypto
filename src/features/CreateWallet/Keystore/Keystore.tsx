@@ -4,7 +4,7 @@ import { addHexPrefix, toChecksumAddress } from 'ethereumjs-util';
 import { IV3Wallet } from 'ethereumjs-wallet';
 import pipe from 'ramda/src/pipe';
 
-import { makeBlob, generateAccountUUID, withHook } from '@utils';
+import { makeBlob, generateAccountUUID, withHook, stripHexPrefix } from '@utils';
 import { generateKeystore, fromV3 } from '@workers';
 import {
   INetworkContext,
@@ -13,7 +13,6 @@ import {
   useAssets,
   useNetworks
 } from '@services/Store';
-import { stripHexPrefix } from '@services/EthService';
 import { WalletFactory } from '@services/WalletService';
 import { NotificationTemplates } from '@features/NotificationsPanel';
 import { TAddress, IRawAccount, Asset, ISettings, NetworkId, WalletId } from '@types';

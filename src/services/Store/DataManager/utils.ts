@@ -17,7 +17,7 @@ import {
   NetworkNodes,
   ITxReceipt
 } from '@types';
-import { makeExplorer } from '@services/EthService';
+import { makeExplorer } from '@utils';
 import { NETWORKS_CONFIG, SCHEMA_BASE, NetworkConfig } from '@database/data';
 import { createDefaultValues } from '@database';
 import { merge } from '@vendor';

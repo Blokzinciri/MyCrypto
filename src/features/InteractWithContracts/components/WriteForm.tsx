@@ -6,13 +6,8 @@ import { addHexPrefix } from 'ethereumjs-util';
 
 import { AccountSelector, Button, Typography, GasSelector } from '@components';
 import { StoreAccount, ITxConfig, Network } from '@types';
-import {
-  StoreContext,
-  hexToString,
-  baseToConvertedUnit,
-  inputGasPriceToHex,
-  hexWeiToString
-} from '@services';
+import { hexToString, baseToConvertedUnit, inputGasPriceToHex, hexWeiToString } from '@utils';
+import { StoreContext } from '@services';
 import { translateRaw } from '@translations';
 import { COLORS } from '@theme';
 

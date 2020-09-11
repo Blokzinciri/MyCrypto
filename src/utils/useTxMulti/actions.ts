@@ -2,9 +2,8 @@ import { Dispatch } from 'react';
 import { TransactionResponse } from 'ethers/providers';
 
 import { ITxSigned, ITxObject, TStateGetter, StoreAccount, Network, ITxHash } from '@types';
-import { isWeb3Wallet, isTxSigned, isTxHash } from '@utils';
+import { isWeb3Wallet, isTxSigned, isTxHash, appendGasLimit, appendNonce } from '@utils';
 import { ProviderHandler } from '@services';
-import { appendGasLimit, appendNonce } from '@services/EthService';
 
 import { TxMultiState, TxMultiAction, ActionTypes } from './types';
 

@@ -4,7 +4,8 @@ import { bufferToHex } from 'ethereumjs-util';
 
 import { StoreAccount, NetworkId, ITxConfig, ITxObject } from '@types';
 import { WALLET_STEPS } from '@components';
-import { getAssetByUUID, hexToString, hexWeiToString, inputValueToHex } from '@services';
+import { getAssetByUUID } from '@services';
+import { hexToString, hexWeiToString, inputValueToHex } from '@utils';
 import { AbiFunction } from '@services/EthService/contracts/ABIFunction';
 
 import { StateMutabilityType, ABIItem, ABIItemType } from './types';

@@ -12,10 +12,10 @@ import {
   Icon,
   Amount
 } from '@components';
-import { DWAccountDisplay, fromTokenBase, useContacts } from '@services';
+import { DWAccountDisplay, useContacts } from '@services';
 import { COLORS, SPACING, BREAK_POINTS } from '@theme';
 import { Network, ExtendedAsset, TAddress } from '@types';
-import { isSameAddress, useScreenSize } from '@utils';
+import { isSameAddress, useScreenSize, fromTokenBase } from '@utils';
 import translate, { Trans } from '@translations';
 import { DEFAULT_GAP_TO_SCAN_FOR } from '@config';
 import BN from 'bn.js';

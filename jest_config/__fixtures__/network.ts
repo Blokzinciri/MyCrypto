@@ -1,4 +1,4 @@
-import { makeExplorer } from '@services';
+import { makeExplorer } from '@utils';
 import { Network, NodeType, TUuid, TTicker } from '@types';
 
 const Ethereum: Network = {
