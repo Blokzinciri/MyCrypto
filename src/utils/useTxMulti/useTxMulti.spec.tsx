@@ -51,7 +51,11 @@ jest.mock('ethers/providers', () => {
   };
 });
 
-const renderUseTxMulti = ({ createActions = jest.fn(), addNewTxToAccount = jest.fn() } = {}) => {
+const renderUseTxMulti = ({
+  createActions = jest.fn(),
+  addNewTxToAccount = jest.fn(),
+  getAccountByAddressAndNetworkName = jest.fn()
+} = {}) => {
   const wrapper: React.FC = ({ children }) => (
     <DataContext.Provider
       value={
@@ -63,7 +67,9 @@ const renderUseTxMulti = ({ createActions = jest.fn(), addNewTxToAccount = jest.
         } as any) as IDataContext
       }
     >
-      <AccountContext.Provider value={{ addNewTxToAccount } as any}>
+      <AccountContext.Provider
+        value={{ addNewTxToAccount, getAccountByAddressAndNetworkName } as any}
+      >
         <StoreContext.Provider value={{ accounts: fAccounts } as any}>
           {' '}
           {children}
@@ -155,7 +161,8 @@ describe('useTxMulti', () => {
     const mockAddTX = jest.fn();
     const { result: r } = renderUseTxMulti({
       addNewTxToAccount: mockAddTX,
-      createActions: jest.fn()
+      createActions: jest.fn(),
+      getAccountByAddressAndNetworkName: jest.fn().mockImplementation(() => fAccount)
     });
 
     const rawTx = {
