@@ -12,7 +12,7 @@ import {
   inputNonceToHex
 } from './makeTransaction';
 import { bigify } from './bigify';
-import { hexToNumber } from './hexToNumber';
+import { hexToNumber } from './formatters';
 
 type TxBeforeSender = Pick<ITxObject, 'to' | 'value' | 'data' | 'chainId'>;
 type TxBeforeGasPrice = Optional<ITxObject, 'nonce' | 'gasLimit' | 'gasPrice'>;

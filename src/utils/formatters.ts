@@ -3,7 +3,6 @@ import { toChecksumAddress as toETHChecksumAddress } from 'ethereumjs-util';
 import { toChecksumAddress as toRSKChecksumAddress } from 'rskjs-util';
 
 import { toTokenBase, Wei } from './units';
-import { padLeftEven } from './padLeftEven';
 import { stripHexPrefix } from './stripHexPrefix';
 
 export const buildEIP681EtherRequest = (
@@ -23,15 +22,6 @@ export const buildEIP681TokenRequest = (
     chainId !== 1 ? `@${chainId}` : ''
   }/transfer?address=${recipientAddr}&uint256=${toTokenBase(tokenValue, decimal)}
   }`;
-
-export function messageToData(messageToTransform: string): string {
-  return (
-    '0x' +
-    Array.from(Buffer.from(messageToTransform, 'utf8'))
-      .map((n) => padLeftEven(n.toString(16)))
-      .join('')
-  );
-}
 
 export function toFixedIfLarger(num: number, fixedSize: number = 6): string {
   return parseFloat(num.toFixed(fixedSize)).toString();
