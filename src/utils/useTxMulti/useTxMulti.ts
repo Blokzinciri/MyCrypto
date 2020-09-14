@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { useReducer } from 'reinspect';
 
 import { ITxObject, ITxStatus, ITxType } from '@types';
-import { StoreContext, AccountContext, useAssets } from '@services';
+import { StoreContext, useAssets, useAccounts } from '@services';
 import { makeTxConfigFromTxResponse, makePendingTxReceipt } from '@utils';
 
 import { TxMultiReducer, initialState } from './reducer';
@@ -37,7 +37,7 @@ export const useTxMulti: TUseTxMulti = () => {
   const [state, dispatch] = useReducer(TxMultiReducer, initialState, identity, 'TxMulti');
   const getState = () => state;
   const { accounts } = useContext(StoreContext);
-  const { addNewTxToAccount, getAccountByAddressAndNetworkName } = useContext(AccountContext);
+  const { addTxToAccount, getAccountByAddressAndNetworkName } = useAccounts();
   const { assets } = useAssets();
   const { network, account: stateAccount } = state;
   // Fetch latest account since the one in state can be outdated
@@ -58,7 +58,7 @@ export const useTxMulti: TUseTxMulti = () => {
       const type = currentTx.type ? currentTx.type : ITxType.UNKNOWN;
       const txConfig = makeTxConfigFromTxResponse(currentTx.txResponse, assets, network, accounts);
       const pendingTxReceipt = makePendingTxReceipt(currentTx.txHash)(type, txConfig);
-      addNewTxToAccount(account, pendingTxReceipt);
+      addTxToAccount(account, pendingTxReceipt);
     }
   }, [currentTx]);
 

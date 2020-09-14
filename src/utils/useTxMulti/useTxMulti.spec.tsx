@@ -5,7 +5,7 @@ import { waitFor } from 'test-utils';
 
 import { fAccount, fAccounts, fAssets, fNetwork, fNetworks } from '@fixtures';
 import { ITxObject, ITxToAddress, ITxValue, ITxData, ITxHash, ITxType, ITxStatus } from '@types';
-import { AccountContext, DataContext, IDataContext, StoreContext } from '@services';
+import { DataContext, IDataContext, StoreContext } from '@services';
 
 import { useTxMulti } from './useTxMulti';
 
@@ -53,11 +53,7 @@ jest.mock('ethers/providers', () => {
   };
 });
 
-const renderUseTxMulti = ({
-  createActions = jest.fn(),
-  addNewTxToAccount = jest.fn(),
-  getAccountByAddressAndNetworkName = jest.fn()
-} = {}) => {
+const renderUseTxMulti = ({ createActions = jest.fn() } = {}) => {
   const wrapper: React.FC = ({ children }) => (
     <DataContext.Provider
       value={
@@ -69,14 +65,10 @@ const renderUseTxMulti = ({
         } as any) as IDataContext
       }
     >
-      <AccountContext.Provider
-        value={{ addNewTxToAccount, getAccountByAddressAndNetworkName } as any}
-      >
-        <StoreContext.Provider value={{ accounts: fAccounts } as any}>
-          {' '}
-          {children}
-        </StoreContext.Provider>
-      </AccountContext.Provider>
+      <StoreContext.Provider value={{ accounts: fAccounts } as any}>
+        {' '}
+        {children}
+      </StoreContext.Provider>
     </DataContext.Provider>
   );
   return renderHook(() => useTxMulti(), { wrapper });
@@ -160,11 +152,11 @@ describe('useTxMulti', () => {
   });
 
   it('adds the txs to the tx history', async () => {
-    const mockAddTX = jest.fn();
+    const mockUpdate = jest.fn();
     const { result: r } = renderUseTxMulti({
-      addNewTxToAccount: mockAddTX,
-      createActions: jest.fn(),
-      getAccountByAddressAndNetworkName: jest.fn().mockImplementation(() => fAccount)
+      createActions: jest.fn().mockImplementation(() => ({
+        update: mockUpdate
+      }))
     });
 
     const rawTx = {
@@ -196,32 +188,36 @@ describe('useTxMulti', () => {
     });
 
     await waitFor(() =>
-      expect(mockAddTX).toBeCalledWith(
-        fAccount,
-        expect.objectContaining({
-          amount: '0.0',
-          asset: fAssets[1],
-          baseAsset: fAssets[1],
-          hash: '0x1',
-          txType: ITxType.APPROVAL,
-          status: ITxStatus.PENDING
-        })
-      )
+      expect(mockUpdate).toBeCalledWith(fAccount.uuid, {
+        ...fAccount,
+        transactions: expect.arrayContaining([
+          expect.objectContaining({
+            amount: '0.0',
+            asset: fAssets[1],
+            baseAsset: fAssets[1],
+            hash: '0x1',
+            txType: ITxType.APPROVAL,
+            status: ITxStatus.PENDING
+          })
+        ])
+      })
     );
 
     await waitFor(() =>
-      expect(mockAddTX).toBeCalledWith(
-        fAccount,
-        expect.objectContaining({
-          amount: '0.0',
-          asset: fAssets[1],
-          baseAsset: fAssets[1],
-          hash: '0x2',
-          txType: ITxType.PURCHASE_MEMBERSHIP,
-          status: ITxStatus.PENDING
-        })
-      )
+      expect(mockUpdate).toBeCalledWith(fAccount.uuid, {
+        ...fAccount,
+        transactions: expect.arrayContaining([
+          expect.objectContaining({
+            amount: '0.0',
+            asset: fAssets[1],
+            baseAsset: fAssets[1],
+            hash: '0x2',
+            txType: ITxType.PURCHASE_MEMBERSHIP,
+            status: ITxStatus.PENDING
+          })
+        ])
+      })
     );
-    expect(mockAddTX).toBeCalledTimes(2);
+    expect(mockUpdate).toBeCalledTimes(2);
   });
 });
