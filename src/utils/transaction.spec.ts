@@ -13,7 +13,9 @@ import {
   fERC20Web3TxReceipt,
   fFinishedERC20Web3TxReceipt,
   fFinishedERC20NonWeb3TxReceipt,
-  fAssets
+  fAssets,
+  fNetwork,
+  fAccounts
 } from '@fixtures';
 import { ITxStatus, ITxType, ITxHash, ITxData, ITxToAddress, ITxValue } from '@types';
 
@@ -24,7 +26,8 @@ import {
   guessERC20Type,
   deriveTxRecipientsAndAmount,
   ERCType,
-  deriveTxFields
+  deriveTxFields,
+  makeTxConfigFromTxResponse
 } from './transaction';
 
 describe('toTxReceipt', () => {
@@ -247,5 +250,20 @@ describe('deriveTxFields', () => {
       amount: '6.101',
       asset: fAssets[1]
     });
+  });
+});
+
+describe('makeTxConfigFromTxResponse', () => {
+  it('interprets an web3 tx response correctly', () => {
+    const toAddress = '0x5197B5b062288Bbf29008C92B08010a92Dd677CD';
+    const result = makeTxConfigFromTxResponse(fETHWeb3TxResponse, fAssets, fNetwork, fAccounts);
+    expect(result).toStrictEqual(
+      expect.objectContaining({
+        from: toAddress,
+        receiverAddress: toAddress,
+        amount: '0.01',
+        asset: fAssets[1]
+      })
+    );
   });
 });
