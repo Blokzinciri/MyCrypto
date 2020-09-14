@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderHook, act } from '@testing-library/react-hooks';
-import isEmpty from 'ramda/src/isEmpty';
+import { isEmpty } from '@vendor';
 import { waitFor } from 'test-utils';
 
 import { fAccount, fAccounts, fAssets, fNetwork, fNetworks } from '@fixtures';
@@ -188,7 +188,7 @@ describe('useTxMulti', () => {
     });
 
     await waitFor(() =>
-      expect(mockUpdate).toBeCalledWith(fAccount.uuid, {
+      expect(mockUpdate).toHaveBeenCalledWith(fAccount.uuid, {
         ...fAccount,
         transactions: expect.arrayContaining([
           expect.objectContaining({
@@ -204,7 +204,7 @@ describe('useTxMulti', () => {
     );
 
     await waitFor(() =>
-      expect(mockUpdate).toBeCalledWith(fAccount.uuid, {
+      expect(mockUpdate).toHaveBeenCalledWith(fAccount.uuid, {
         ...fAccount,
         transactions: expect.arrayContaining([
           expect.objectContaining({
@@ -218,6 +218,6 @@ describe('useTxMulti', () => {
         ])
       })
     );
-    expect(mockUpdate).toBeCalledTimes(2);
+    expect(mockUpdate).toHaveBeenCalledTimes(2);
   });
 });
