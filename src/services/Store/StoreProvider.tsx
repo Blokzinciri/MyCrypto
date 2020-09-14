@@ -297,7 +297,7 @@ export const StoreProvider: React.FC = ({ children }) => {
         ) as StoreAccount;
 
         const txs = getTxsFromAccount([storeAccount]);
-        const overwrittenTx = txs.find(
+        const overwritingTx = txs.find(
           (t) =>
             t.nonce === pendingTxReceipt.nonce &&
             t.asset.networkId === pendingTxReceipt.asset.networkId &&
@@ -305,7 +305,7 @@ export const StoreProvider: React.FC = ({ children }) => {
             t.status === ITxStatus.SUCCESS
         );
 
-        if (overwrittenTx) {
+        if (overwritingTx) {
           removeTxFromAccount(senderAccount, pendingTxReceipt);
           return;
         }
