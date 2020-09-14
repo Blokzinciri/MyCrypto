@@ -3,7 +3,7 @@ import adjust from 'ramda/src/adjust';
 import mergeLeft from 'ramda/src/mergeLeft';
 
 import { getUUID } from '@utils';
-import { ITxStatus, ITxObject, ITxHash } from '@types';
+import { ITxStatus, ITxObject, ITxHash, ITxType } from '@types';
 
 import { ActionTypes, TxMultiState, TxMultiAction } from './types';
 import { TransactionResponse } from 'ethers/providers';
@@ -16,10 +16,12 @@ export const initialState = {
   transactions: []
 };
 
-const formatTx = (txRaw: ITxObject) => ({
+const formatTx = ({ label, type, ...txRaw }: ITxObject & { type: ITxType; label: string }) => ({
   txRaw,
   _uuid: getUUID(JSON.stringify(txRaw)),
-  status: ITxStatus.PREPARING
+  status: ITxStatus.PREPARING,
+  type,
+  label
 });
 
 export function TxMultiReducer(state: TxMultiState, action: TxMultiAction): TxMultiState {

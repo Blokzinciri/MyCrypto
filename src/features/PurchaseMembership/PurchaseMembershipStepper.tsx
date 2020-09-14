@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { useStateReducer, useTxMulti } from '@utils';
-import { ITxReceipt, ITxConfig, TxParcel, ITxStatus } from '@types';
+import { ITxReceipt, ITxConfig, TxParcel, ITxStatus, ITxType } from '@types';
 import { default as GeneralStepper, IStepperPath } from '@components/GeneralStepper';
 import { ROUTE_PATHS } from '@config';
 import { translateRaw } from '@translations';
@@ -45,8 +45,8 @@ const PurchaseMembershipStepper = () => {
       actions: (formData: MembershipSimpleTxFormFull) => {
         initWith(
           () => {
-            const purchaseTx = createPurchaseTx(formData);
-            const approveTx = createApproveTx(formData);
+            const purchaseTx = { ...createPurchaseTx(formData), type: ITxType.PURCHASE_MEMBERSHIP };
+            const approveTx = { ...createApproveTx(formData), type: ITxType.APPROVAL };
             return Promise.resolve(
               isERC20Tx(formData.asset) ? [approveTx, purchaseTx] : [purchaseTx]
             );

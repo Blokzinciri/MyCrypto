@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
 
 import { useTxMulti } from '@utils';
-import { TxParcel, ITxStatus, ISimpleTxFormFull } from '@types';
+import { TxParcel, ITxStatus, ISimpleTxFormFull, ITxType } from '@types';
 import { default as GeneralStepper, IStepperPath } from '@components/GeneralStepper';
 import { ROUTE_PATHS } from '@config';
 import { translateRaw } from '@translations';
@@ -32,8 +32,11 @@ const TokenMigrationStepper = () => {
       actions: (formData: ITokenMigrationFormFull) => {
         initWith(
           () => {
-            const purchaseTx = createMigrationTx(formData);
-            const approveTx = createApproveTx(formData);
+            const purchaseTx = {
+              ...createMigrationTx(formData),
+              type: ITxType.REP_TOKEN_MIGRATION
+            };
+            const approveTx = { ...createApproveTx(formData), type: ITxType.APPROVAL };
             return Promise.resolve([approveTx, purchaseTx]);
           },
           formData.account,
