@@ -64,7 +64,7 @@ export {
   makeTxConfigFromTxResponse,
   makeFinishedTxReceipt,
   makeUnknownTxReceipt,
-  guessIfErc20Tx,
+  guessERC20Type,
   deriveTxRecipientsAndAmount
 } from './transaction';
 export {
